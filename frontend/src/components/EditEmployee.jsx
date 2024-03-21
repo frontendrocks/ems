@@ -5,6 +5,7 @@ import axios from 'axios';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import { Link } from 'react-router-dom';
+import { BASE_URL } from '../common/BaseUrl';
 
 function EditEmployee() {
   const [formData, setFormData] = useState('');
@@ -14,7 +15,7 @@ function EditEmployee() {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:5001/employee/${id}`).then((res) => {
+    axios.get(`${BASE_URL}employee/${id}`).then((res) => {
       setFormData(res.data);
       setLoading(false);
     }).catch((err) => {
@@ -26,7 +27,7 @@ function EditEmployee() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setLoading(true);
-    axios.put(`http://localhost:5001/employee/${id}`, formData).then(() => {
+    axios.put(`${BASE_URL}employee/${id}`, formData).then(() => {
       setLoading(false);
       navigate('/employeeList')
     }).catch((error) => {
@@ -82,7 +83,8 @@ arrow_back
           
           <button type="submit" className="mx-auto text-xl rounded-md my-4 border-r-8 bg-blue-900 text-white w-full p-2 border-2 border-gray-950" >Update</button>
         </form>
-      </div>
+        </div>
+        <Footer />
     </div>
     </div>
    

@@ -1,7 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import '../common/style/Common.css';
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+  const { pathname } = location;
+  const splitLocation = pathname.split("/");
+
   return (
     <div>
        <nav
@@ -24,16 +30,14 @@ const Header = () => {
               data-twe-navbar-nav-ref>
        
               <li
-                className=" ps-2 mx-2 "
+                  className={splitLocation[1] === "" ? "navbar__link--active" : "ps-2 mx-2 navbar__link"} 
                               data-twe-nav-item-ref>
-                              <Link to="/">Home</Link>
+                              <Link to="/" >Home</Link>
                 
               </li>
         
-              <li
-                className=" mx-2 "
-                data-twe-nav-item-ref>
-                 <Link to="/employeeList">Employee List</Link>
+              <li data-twe-nav-item-ref  className={splitLocation[1] === "employeeList" ? "navbar__link--active" : "mx-2 navbar__link"} >
+                 <Link to="/employeeList" activeClassName="activeNav">Employee List</Link>
               </li>
         
             </ul>
