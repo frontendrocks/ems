@@ -37,6 +37,8 @@ router.get('/', async (req, res) => {
     }
 })
 
+// to fet record from Id
+
 router.get('/:id', async (request, response) => {
   try {
     const { id } = request.params;
@@ -49,6 +51,8 @@ router.get('/:id', async (request, response) => {
   }
 });
 
+
+// to update
 router.put('/:id', async (req, res) => {
     try {
         if (!req.body.name || !req.body.email || !req.body.phone || !req.body.address) {
@@ -67,6 +71,8 @@ router.put('/:id', async (req, res) => {
         res.status(500).send({ message: error.message })
     }
 });
+
+// to delete record 
 
 router.delete('/:id', async (req, res) => {
     try {

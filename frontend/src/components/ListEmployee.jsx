@@ -17,7 +17,7 @@ function ListEmployee() {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [filterData, setFilterData] = useState([]);
-  const no_of_record_per_page = 10;
+  const no_of_record_per_page = 2;
   
 
   // For pagination
@@ -71,6 +71,8 @@ function ListEmployee() {
             const employeeData = employee.filter((post) => { return post._id !== empDeleteId });
             setFilterData(employee);
             setPage(1);
+            loadEmployee();
+            setLoading(false);
           }
         });
     }
@@ -134,10 +136,16 @@ function ListEmployee() {
               </button>
             </td>
           </tr>))}
+                
+                {employee.length === 0 ? <tr>
+                  <td colspan="6">
+                    <h2 className="flex align-middle justify-center p-5 text-center">Sorry No record found!</h2>
+                  </td>
+                </tr> : ""} 
        
         </tbody>
             </table>
-            <div className="flex mx-12 mt-4 justify-center">
+            {employee && employee.length ? <div className="flex mx-12 mt-4 justify-center">
                 <ReactPaginate
                 containerClassName={"pagination"}
                 activeClassName={"active"}
@@ -156,7 +164,9 @@ function ListEmployee() {
                   </IconContext.Provider>
             }
           />
-            </div>
+            </div> : ""
+            }
+            
             
         </div>
         )}
