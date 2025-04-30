@@ -14,4 +14,4 @@ export const mongoDBURL = 'mongodb+srv://<userName>:<PassWord>@product-store-mer
 
 1. npm install -D tailwindcss
 2. npx tailwindcss init
-3. https://www.youtube.com/watch?v=AD4EdyqK6v0
+
